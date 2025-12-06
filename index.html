@@ -16,16 +16,33 @@
       margin: auto;
       padding: 20px;
     }
+
+    /* Search Box */
     .search-box {
       margin-bottom: 20px;
     }
-    .search-box input {
-      width: 94%;
-      padding: 10px;
+    .search-wrapper {
+      position: relative;
+      width: 100%;
+    }
+    .search-wrapper input {
+      width: 100%;
+      padding: 10px 40px 10px 10px; /* Right padding for icon */
       border-radius: 6px;
       border: none;
       font-size: 16px;
     }
+    .search-wrapper .search-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      font-size: 18px;
+      color: #999;
+    }
+
+    /* Download Boxes */
     .download-box {
       background: #222;
       padding: 20px;
@@ -53,6 +70,8 @@
     .hidden {
       display: none;
     }
+
+    /* Pagination */
     #pagination {
       text-align: center;
       margin-top: 20px;
@@ -75,9 +94,12 @@
   <div class="container">
     <h1>List Of Games</h1>
 
-    <!-- Search Box -->
+    <!-- Search Box with Magnifying Glass -->
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Search files...">
+      <div class="search-wrapper">
+        <input type="text" id="searchInput" placeholder="Search files...">
+        <span class="search-icon">🔍</span>
+      </div>
     </div>
 
     <!-- Download Boxes -->
@@ -123,7 +145,7 @@
   <script>
     const searchInput = document.getElementById('searchInput');
     const downloadBoxes = Array.from(document.querySelectorAll('.download-box'));
-    const itemsPerPage = 5; // Changed to 5 download boxes per page
+    const itemsPerPage = 5; // 5 download boxes per page
     let currentPage = 1;
 
     // Function to show items for the current page
