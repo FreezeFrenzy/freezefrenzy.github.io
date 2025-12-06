@@ -21,25 +21,15 @@
     .search-box {
       margin-bottom: 20px;
     }
-    .search-wrapper {
-      position: relative;
-      width: 100%;
-    }
-    .search-wrapper input {
-      width: 100%;
-      padding: 10px 40px 10px 10px; /* Right padding for icon */
+    .search-box input {
+      width: 94%;
+      padding: 10px;
       border-radius: 6px;
       border: none;
       font-size: 16px;
-    }
-    .search-wrapper .search-icon {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      pointer-events: none;
-      font-size: 18px;
-      color: #999;
+      display: inline-block;
+      background: #fff url('https://cdn-icons-png.flaticon.com/512/622/622669.png') no-repeat right 10px center;
+      background-size: 20px;
     }
 
     /* Download Boxes */
@@ -94,27 +84,26 @@
   <div class="container">
     <h1>List Of Games</h1>
 
-    <!-- Search Box with Magnifying Glass -->
+    <!-- Search Box -->
     <div class="search-box">
-      <div class="search-wrapper">
-        <input type="text" id="searchInput" placeholder="Search files...">
-        <span class="search-icon">🔍</span>
-      </div>
+      <input type="text" id="searchInput" placeholder="Search files...">
     </div>
 
     <!-- Download Boxes -->
     <div class="download-box">
       <h2>Black Souls</h2>
-      <img src="YOUR_IMAGE_LINK_1" alt="File 1 Image">
-      <p>Description goes here.</p>
-      <a href="YOUR_DOWNLOAD_LINK_1" class="button" target="_blank">Download</a>
+      <img src="https://i.imgur.com/VXA5wzc.jpeg" alt="File 1 Image">
+      <p>Long, long ago, there existed a kingdom shrouded in dense mist: the Lost Empire. This mist twisted humans into terrifying beasts, plunging the world into despair. War raged endlessly. Heroes rose, seeking fame and glory. It is in this place you awaken—a nameless undead.</p>
+      <p>Platform: Pc/Android(Joiplay)</p>
+      <a href="https://www.mediafire.com/file/j9e18vnbcdzbo2d/BLACK_SOULS.rar/file" class="button" target="_blank">Download</a>
     </div>
 
     <div class="download-box">
-      <h2>My File 2</h2>
-      <img src="YOUR_IMAGE_LINK_2" alt="File 2 Image">
-      <p>Another file description.</p>
-      <a href="YOUR_DOWNLOAD_LINK_2" class="button" target="_blank">Download</a>
+      <h2>Black Souls II</h2>
+      <img src="https://i.imgur.com/MJ1sRMN.jpeg" alt="File 2 Image">
+      <p>Despair. Fear, Madness, once again. An original work based on "Alice in Wonderland" and "Through the Looking-Glass." Dark Fairy Tale Fantasy x Psychological Horror RPG focusing on the themes of "Exploration of a Mad World" and "Life or Death Combat against Demonbeasts".</p>
+      <p>Platform: Pc/Android(Joiplay)</p>
+      <a href="https://pixeldrain.com/u/wq99NgBg" class="button" target="_blank">Download</a>
     </div>
 
     <div class="download-box">
@@ -125,16 +114,18 @@
     </div>
 
     <div class="download-box">
-      <h2>File 4</h2>
+      <h2>Game 4</h2>
       <img src="YOUR_IMAGE_LINK_4" alt="File 4 Image">
-      <p>Description for file 4.</p>
+      <p>Description for game 4.</p>
+      <p>Platform: Pc/Android</p>
       <a href="YOUR_DOWNLOAD_LINK_4" class="button" target="_blank">Download</a>
     </div>
 
     <div class="download-box">
-      <h2>File 5</h2>
+      <h2>Game 5</h2>
       <img src="YOUR_IMAGE_LINK_5" alt="File 5 Image">
-      <p>Description for file 5.</p>
+      <p>Description for game 5.</p>
+      <p>Platform: Pc/Android</p>
       <a href="YOUR_DOWNLOAD_LINK_5" class="button" target="_blank">Download</a>
     </div>
 
@@ -148,24 +139,20 @@
     const itemsPerPage = 5; // 5 download boxes per page
     let currentPage = 1;
 
-    // Function to show items for the current page
+    // Show items for the current page
     function showPage(page) {
       const start = (page - 1) * itemsPerPage;
       const end = start + itemsPerPage;
 
       downloadBoxes.forEach((box, index) => {
-        if (index >= start && index < end) {
-          box.style.display = "block";
-        } else {
-          box.style.display = "none";
-        }
+        box.style.display = (index >= start && index < end) ? "block" : "none";
       });
 
       currentPage = page;
       renderPagination();
     }
 
-    // Function to render page numbers
+    // Render pagination buttons
     function renderPagination() {
       const totalPages = Math.ceil(downloadBoxes.length / itemsPerPage);
       const paginationContainer = document.getElementById('pagination');
@@ -175,7 +162,6 @@
         const pageBtn = document.createElement('button');
         pageBtn.textContent = i;
         pageBtn.style.background = (i === currentPage) ? "#2196F3" : "#555";
-
         pageBtn.addEventListener('click', () => showPage(i));
         paginationContainer.appendChild(pageBtn);
       }
